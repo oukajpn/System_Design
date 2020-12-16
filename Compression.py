@@ -2,7 +2,7 @@
 from time import sleep
 import Detection
 import Push_Pin
-import time
+#import time
 import RPi.GPIO as GPIO
 
 health = 0
@@ -88,5 +88,5 @@ def compression():
                         sleep(delay)
                     now_elevat -= add_elevat
                     GPIO.cleanup()
-                now_elevat = 0
-                pb_cnt = 0
+            now_elevat = 0
+            pb_cnt = 0
