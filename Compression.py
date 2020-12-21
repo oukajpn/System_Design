@@ -27,39 +27,13 @@ def detec_btn1():
         else:
             state = 0
             return state
-'''
-def push(max_elevat,now_elevat,add_elevat):
-    while(max_elevat > now_elevat):
-        danger = Detection.OPEN_CLOSE_Detection
-        if(danger == 0):
-            GPIO.output(DIR, 0)
-            for x in range(motor_steps):
-                GPIO.output(STEP, GPIO.HIGH)
-                sleep(delay)
-                GPIO.output(STEP, GPIO.LOW)
-                sleep(delay)
-            now_elevat -= add_elevat
-            GPIO.cleanup()
 
-def down(max_elevat,now_elevat,add_elevat):
-    while(max_elevat > now_elevat):
-        danger = Detection.OPEN_CLOSE_Detection
-        if(danger == 0):
-            GPIO.output(DIR, 1)
-            for x in range(motor_steps):
-                GPIO.output(STEP, GPIO.HIGH)
-                sleep(delay)
-                GPIO.output(STEP, GPIO.LOW)
-                sleep(delay)
-            now_elevat -= add_elevat
-            GPIO.cleanup()
-'''
 def push(max_elevat,now_elevat,add_elevat):
     while(max_elevat > now_elevat):
         danger = Detection.OPEN_CLOSE_Detection
         if(danger == 0):
             GPIO.output(DIR, 0)
-            while(motor_steps):
+            while(max_elevat > now_elevat):
                 GPIO.output(STEP, GPIO.HIGH)
                 sleep(delay)
                 GPIO.output(STEP, GPIO.LOW)
@@ -75,7 +49,7 @@ def down(max_elevat,now_elevat,add_elevat):
         danger = Detection.OPEN_CLOSE_Detection
         if(danger == 0):
             GPIO.output(DIR, 1)
-            while(motor_steps):
+            while(max_elevat > now_elevat):
                 GPIO.output(STEP, GPIO.HIGH)
                 sleep(delay)
                 GPIO.output(STEP, GPIO.LOW)
