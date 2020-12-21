@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 
 health = 0
 
-motor_steps = 200
+motor_steps = 12500
 delay = .001
 
 def setup(DIR,STEP,btn1):
@@ -16,7 +16,6 @@ def setup(DIR,STEP,btn1):
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(DIR, GPIO.OUT)
     GPIO.setup(STEP, GPIO.OUT)
-    GPIO.output(DIR, 1)
     GPIO.setup(btn1, GPIO.IN)
     
 def detec_btn1():
@@ -28,15 +27,16 @@ def detec_btn1():
         else:
             state = 0
             return state
-
+'''
 def push(max_elevat,now_elevat,add_elevat):
     while(max_elevat > now_elevat):
         danger = Detection.OPEN_CLOSE_Detection
         if(danger == 0):
+            GPIO.output(DIR, 0)
             for x in range(motor_steps):
-                GPIO.output(STEP, GPIO.LOW)
-                sleep(delay)
                 GPIO.output(STEP, GPIO.HIGH)
+                sleep(delay)
+                GPIO.output(STEP, GPIO.LOW)
                 sleep(delay)
             now_elevat -= add_elevat
             GPIO.cleanup()
@@ -45,6 +45,7 @@ def down(max_elevat,now_elevat,add_elevat):
     while(max_elevat > now_elevat):
         danger = Detection.OPEN_CLOSE_Detection
         if(danger == 0):
+            GPIO.output(DIR, 1)
             for x in range(motor_steps):
                 GPIO.output(STEP, GPIO.HIGH)
                 sleep(delay)
@@ -52,12 +53,45 @@ def down(max_elevat,now_elevat,add_elevat):
                 sleep(delay)
             now_elevat -= add_elevat
             GPIO.cleanup()
+'''
+def push(max_elevat,now_elevat,add_elevat):
+    while(max_elevat > now_elevat):
+        danger = Detection.OPEN_CLOSE_Detection
+        if(danger == 0):
+            GPIO.output(DIR, 0)
+            while(motor_steps):
+                GPIO.output(STEP, GPIO.HIGH)
+                sleep(delay)
+                GPIO.output(STEP, GPIO.LOW)
+                sleep(delay)
+                danger = Detection.OPEN_CLOSE_Detection
+                GPIO.cleanup()
+                max_elevat-=now_elevat
+                if(danger == 1):
+                    break
 
+def down(max_elevat,now_elevat,add_elevat):
+    while(max_elevat > now_elevat):
+        danger = Detection.OPEN_CLOSE_Detection
+        if(danger == 0):
+            GPIO.output(DIR, 1)
+            while(motor_steps):
+                GPIO.output(STEP, GPIO.HIGH)
+                sleep(delay)
+                GPIO.output(STEP, GPIO.LOW)
+                sleep(delay)
+                danger = Detection.OPEN_CLOSE_Detection
+                GPIO.cleanup()
+                max_elevat-=now_elevat
+                if(danger == 1):
+                    break
+            
+        
 def compression():
     global health
-    max_elevat = 0
+    max_elevat = motor_steps
     now_elevat = 0
-    add_elevat = 0
+    add_elevat = motor_steps/100
     pb_state = detec_btn1()
     pb_cnt = 0
     
