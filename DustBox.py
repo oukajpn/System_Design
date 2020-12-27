@@ -6,7 +6,8 @@ import RPi.GPIO as GPIO
 
 DIR = 20
 STEP = 21
-btn1 = 17
+btn1 = 6
+
 Compression.setup(DIR,STEP,btn1)
 
 while True:
