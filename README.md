@@ -15,10 +15,10 @@ sudo python setup.py install
 ## Activate SPI driver
 ```bash
 /boot/config.txt
-\# Uncomment some or all of these to enable the optional hardware interfaces
-\#dtparam=i2c_arm=on
-\#dtparam=i2s=on
-\#dtparam=spi=on
+# Uncomment some or all of these to enable the optional hardware interfaces
+#dtparam=i2c_arm=on
+#dtparam=i2s=on
+#dtparam=spi=on
 dtparam=spi=on
 ```
 Delete \# at "\#dtparam=spi=on" or add "dtparam=spi=on".  
