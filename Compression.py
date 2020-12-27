@@ -45,8 +45,6 @@ def push(limit_pressur,max_elevat,now_elevat,add_elevat):
                 max_elevat-=now_elevat
                 if(danger == 1 or (limit_pressur<=now_pressur)):
                     break
-        else:
-            break
 
 def down(limit_pressur,max_elevat,now_elevat,add_elevat):
     while(max_elevat > now_elevat):
@@ -64,8 +62,6 @@ def down(limit_pressur,max_elevat,now_elevat,add_elevat):
                 max_elevat-=now_elevat
                 if(danger == 1 or (limit_pressur<=now_pressur)):
                     break
-        else:
-            break
                 
 def pressure():
     spi = spidev.SpiDev()
