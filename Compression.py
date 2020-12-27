@@ -66,15 +66,11 @@ def down(limit_pressur,max_elevat,now_elevat,add_elevat):
 def pressure():
     spi = spidev.SpiDev()
     spi.open(0, 0)
-    
-    try:
-        while True:
-            res = spi.xfer2([0x68, 0x00])
-            value = (res[0] * 256 + res[1]) & 0x3ff
-            time.sleep(1)
-            return(value)
-    except KeyboardInterrupt:
-        spi.close()
+    while True:
+        res = spi.xfer2([0x68, 0x00])
+        value = (res[0] * 256 + res[1]) & 0x3ff
+        time.sleep(1)
+        return(value)
             
 def compression():
     max_elevat = motor_steps
