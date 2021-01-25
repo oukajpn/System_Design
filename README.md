@@ -36,3 +36,4 @@ DustBox.py
 * [Raspberry PiのGPIO端子のスイッチ入力](https://qiita.com/rockhopper-penguin/items/fd3fe09cdbd04b2a5f86)
 * [Raspberry Piで圧力センサーを使う](https://iinpht.jeez.jp/raspberrypi/raspberry-piで圧力センサーを使う)
 * [Raspberry Pi はじめてのラズパイ：ステッピングモータをA4988ドライバで制御する](https://stemship.com/raspberry-pi-beginner-stepmotor/)
+* [Raspberry Pi 2/3 B ピン配置 (40ピン)](https://iot.keicode.com/raspberry-pi/pinout.php)

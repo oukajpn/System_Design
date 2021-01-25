@@ -16,4 +16,3 @@ while True:
     if(KeyboardInterrupt):
         GPIO.cleanup()
         sys.exit()
- 
